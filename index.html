@@ -4,176 +4,299 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
 <title>November Rain | $NRAIN</title>
 <meta name="description" content="Somewhere between heartbreak and hope, it started raining. November Rain.">
-<style>
-* { box-sizing:border-box; margin:0; padding:0; }
 
-html { scroll-behavior:smooth; }
+<style>
+:root {
+  --pink: #e6a0ad;
+  --white: #f5f4f2;
+  --muted: #c5ccd5;
+  --dark: #07111d;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
 
 body {
-  background:#07111c;
-  color:#fff;
-  font-family:Arial, sans-serif;
-  overflow-x:hidden;
+  font-family: Arial, Helvetica, sans-serif;
+  background: var(--dark);
+  color: var(--white);
+  overflow-x: hidden;
 }
 
-/* FIXED BACKGROUND */
-.background {
-  position:fixed;
-  inset:0;
-  z-index:-3;
-  background:
-    linear-gradient(rgba(3,10,20,.42),rgba(3,10,20,.72)),
-    url('/november-rain/november-rain-bg.png') center center / cover no-repeat;
+/* FIXED BACKGROUND IMAGE */
+
+#background {
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+
+  background-image:
+    linear-gradient(
+      rgba(3, 9, 18, 0.25),
+      rgba(3, 9, 18, 0.58)
+    ),
+    url("./november-rain-bg.png");
+
+  background-size: cover;
+  background-position: center center;
+  background-repeat: no-repeat;
+  pointer-events: none;
 }
+
+/* FIXED RAIN */
 
 #rain {
-  position:fixed;
-  inset:0;
-  width:100%;
-  height:100%;
-  z-index:-2;
-  pointer-events:none;
+  position: fixed;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 1;
+  pointer-events: none;
 }
 
-/* HEADER */
+/* WEBSITE CONTENT */
+
+#site {
+  position: relative;
+  z-index: 2;
+}
+
+/* NAVIGATION */
+
 header {
-  position:absolute;
-  top:0;
-  width:100%;
-  padding:28px 7%;
-  display:flex;
-  justify-content:space-between;
-  align-items:center;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  padding: 30px 8%;
+
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
 }
 
 .logo {
-  font-size:20px;
-  font-weight:800;
-  letter-spacing:3px;
+  font-size: 17px;
+  font-weight: bold;
+  letter-spacing: 4px;
+}
+
+nav {
+  display: flex;
+  gap: 30px;
 }
 
 nav a {
-  color:white;
-  text-decoration:none;
-  margin-left:25px;
-  font-size:13px;
-  letter-spacing:1px;
+  color: white;
+  text-decoration: none;
+  font-size: 11px;
+  letter-spacing: 2px;
+  transition: color .3s;
+}
+
+nav a:hover {
+  color: var(--pink);
 }
 
 /* HERO */
+
 .hero {
-  min-height:100vh;
-  display:flex;
-  align-items:center;
-  padding:140px 10% 100px;
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  padding: 150px 10% 100px;
 }
 
 .hero-content {
-  max-width:550px;
-  text-shadow:0 2px 20px #000;
+  max-width: 570px;
+  text-shadow: 0 3px 25px rgba(0,0,0,.8);
 }
 
 .eyebrow {
-  color:#e5a0a8;
-  letter-spacing:5px;
-  font-size:12px;
-  margin-bottom:22px;
+  color: var(--pink);
+  font-size: 11px;
+  letter-spacing: 6px;
+  margin-bottom: 25px;
 }
 
 h1 {
-  font-family:Georgia,serif;
-  font-size:clamp(55px,9vw,105px);
-  line-height:.95;
-  font-weight:400;
-  margin-bottom:28px;
+  font-family: Georgia, serif;
+  font-weight: normal;
+  font-size: clamp(58px, 9vw, 108px);
+  line-height: .94;
+  letter-spacing: -4px;
+  margin-bottom: 30px;
 }
 
-.hero p {
-  font-family:Georgia,serif;
-  font-size:21px;
-  color:#e0e5ed;
-  line-height:1.6;
+.hero-description {
+  font-family: Georgia, serif;
+  font-size: 22px;
+  line-height: 1.7;
+  color: #e0e5eb;
+  max-width: 470px;
 }
 
-.cta {
-  display:inline-block;
-  margin-top:35px;
-  padding:15px 30px;
-  border:1px solid #d77c8a;
-  color:white;
-  text-decoration:none;
-  letter-spacing:2px;
-  font-size:12px;
-  transition:.3s;
+.button {
+  display: inline-block;
+  margin-top: 38px;
+  padding: 16px 30px;
+  border: 1px solid var(--pink);
+  color: white;
+  text-decoration: none;
+  font-size: 11px;
+  letter-spacing: 3px;
+  transition: .3s;
 }
 
-.cta:hover {
-  background:#a83d55;
+.button:hover {
+  background: #a94760;
 }
 
-/* CONTENT */
-section.content {
-  padding:110px 10%;
-  background:rgba(3,9,18,.76);
-  border-top:1px solid rgba(255,255,255,.08);
+/* SCROLLING CONTENT */
+
+.section {
+  padding: 120px 10%;
+  background: rgba(3, 9, 18, .79);
+  border-top: 1px solid rgba(255,255,255,.09);
 }
 
-.content-inner {
-  max-width:850px;
-  margin:auto;
+.inner {
+  max-width: 850px;
+  margin: auto;
 }
 
-.content h2 {
-  font-family:Georgia,serif;
-  font-size:clamp(36px,6vw,60px);
-  font-weight:400;
-  margin-bottom:30px;
+.section-label {
+  color: var(--pink);
+  font-size: 11px;
+  letter-spacing: 5px;
+  margin-bottom: 25px;
 }
 
-.content p {
-  color:#c3cbd6;
-  font-size:17px;
-  line-height:1.9;
-  margin-bottom:20px;
+.section h2 {
+  font-family: Georgia, serif;
+  font-size: clamp(38px, 6vw, 65px);
+  font-weight: normal;
+  line-height: 1.15;
+  margin-bottom: 35px;
 }
 
-.token {
-  text-align:center;
-  padding:100px 20px;
-  background:rgba(3,9,18,.88);
+.section p {
+  max-width: 720px;
+  color: var(--muted);
+  font-family: Georgia, serif;
+  font-size: 19px;
+  line-height: 1.9;
+  margin-bottom: 24px;
 }
 
-.token h2 {
-  font-family:Georgia,serif;
-  font-size:65px;
+/* TOKEN SECTION */
+
+.token-section {
+  padding: 120px 20px;
+  text-align: center;
+  background: rgba(3, 9, 18, .88);
+  border-top: 1px solid rgba(255,255,255,.09);
+}
+
+.token-section h2 {
+  font-family: Georgia, serif;
+  font-size: clamp(42px, 7vw, 76px);
+  font-weight: normal;
 }
 
 .ticker {
-  color:#e5a0a8;
-  font-size:25px;
-  letter-spacing:5px;
-  margin-top:15px;
+  color: var(--pink);
+  font-size: 27px;
+  letter-spacing: 8px;
+  margin-top: 22px;
 }
+
+.tagline {
+  margin-top: 25px;
+  color: var(--muted);
+  font-family: Georgia, serif;
+  font-size: 20px;
+}
+
+/* FOOTER */
 
 footer {
-  text-align:center;
-  padding:35px 20px;
-  background:#050b13;
-  color:#788697;
-  font-size:12px;
-  letter-spacing:2px;
+  padding: 40px 20px;
+  background: #030811;
+  color: #8995a5;
+  text-align: center;
+  font-size: 10px;
+  letter-spacing: 3px;
 }
 
-@media(max-width:650px) {
-  header { padding:22px 6%; }
-  nav a { margin-left:12px; font-size:10px; }
-  .hero { padding:130px 7% 80px; }
-  .hero p { font-size:18px; }
-  section.content { padding:80px 8%; }
-  .background {
-    background-position:65% center;
+/* MOBILE */
+
+@media (max-width: 700px) {
+
+  header {
+    padding: 24px 6%;
+  }
+
+  .logo {
+    font-size: 12px;
+    letter-spacing: 2px;
+  }
+
+  nav {
+    gap: 14px;
+  }
+
+  nav a {
+    font-size: 9px;
+    letter-spacing: 1px;
+  }
+
+  #background {
+    background-position: 68% center;
+  }
+
+  .hero {
+    min-height: 100svh;
+    padding: 130px 7% 80px;
+    align-items: flex-end;
+  }
+
+  .hero-content {
+    padding-bottom: 35px;
+  }
+
+  h1 {
+    font-size: clamp(58px, 15vw, 85px);
+  }
+
+  .hero-description {
+    font-size: 18px;
+  }
+
+  .section {
+    padding: 85px 8%;
+  }
+
+  .section p {
+    font-size: 17px;
+  }
+}
+
+/* REDUCE ANIMATION FOR ACCESSIBILITY */
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
   }
 }
 </style>
@@ -181,11 +304,14 @@ footer {
 
 <body>
 
-<div class="background"></div>
+<div id="background"></div>
 <canvas id="rain"></canvas>
+
+<div id="site">
 
 <header>
   <div class="logo">NOVEMBER RAIN</div>
+
   <nav>
     <a href="#story">STORY</a>
     <a href="#token">TOKEN</a>
@@ -193,90 +319,177 @@ footer {
 </header>
 
 <main>
+
 <section class="hero">
   <div class="hero-content">
+
     <div class="eyebrow">A SEASON OF HOPE</div>
+
     <h1>November<br>Rain.</h1>
-    <p>Somewhere between heartbreak and hope, it started raining.</p>
-    <a href="#story" class="cta">DISCOVER OUR STORY</a>
+
+    <p class="hero-description">
+      Somewhere between heartbreak and hope,
+      it started raining.
+    </p>
+
+    <a href="#story" class="button">
+      DISCOVER OUR STORY
+    </a>
+
   </div>
 </section>
 
-<section class="content" id="story">
-  <div class="content-inner">
-    <h2>Even in the rain,<br>we keep hoping.</h2>
+<section class="section" id="story">
+  <div class="inner">
+
+    <div class="section-label">THE STORY</div>
+
+    <h2>
+      Even in the rain,<br>
+      we keep hoping.
+    </h2>
+
     <p>
-      Sometimes reality hurts. Sometimes the truth is difficult
-      to accept. And sometimes, hope is the only thing we have left.
+      Sometimes reality hurts. Sometimes the truth
+      is difficult to accept. And sometimes, hope
+      is the only thing we have left.
     </p>
+
     <p>
-      We all have our moments of denial. We hold on, look away,
-      and convince ourselves that tomorrow will be different.
+      We all have our moments of denial. We hold on,
+      look away, and convince ourselves that tomorrow
+      will be different.
     </p>
+
     <p>
       Maybe that's what makes us human.
     </p>
+
   </div>
 </section>
 
-<section class="token" id="token">
-  <h2>November Rain</h2>
-  <div class="ticker">$NRAIN</div>
-  <p style="margin-top:25px;color:#c3cbd6">
-    Fueled by Hope.
-  </p>
+<section class="section">
+  <div class="inner">
+
+    <div class="section-label">THE PHILOSOPHY</div>
+
+    <h2>
+      A little heartbreak.<br>
+      A little hope.
+    </h2>
+
+    <p>
+      Not every storm comes to destroy.
+      Not every ending feels like an ending.
+    </p>
+
+    <p>
+      Sometimes we just need another reason
+      to believe.
+    </p>
+
+  </div>
 </section>
+
+<section class="token-section" id="token">
+
+  <h2>November Rain</h2>
+
+  <div class="ticker">$NRAIN</div>
+
+  <p class="tagline">Fueled by Hope.</p>
+
+</section>
+
 </main>
 
 <footer>
   NOVEMBER RAIN © 2026 · FUELED BY HOPE
 </footer>
 
+</div>
+
 <script>
-// ANIMATED RAIN
-const canvas = document.getElementById('rain');
-const ctx = canvas.getContext('2d');
 
+/* CONTINUOUS RAIN ANIMATION */
+
+const canvas = document.getElementById("rain");
+const ctx = canvas.getContext("2d");
+
+let width, height;
 let drops = [];
-let w, h;
 
-function resize() {
-  w = canvas.width = window.innerWidth;
-  h = canvas.height = window.innerHeight;
-  drops = Array.from({length:Math.floor(w/5)}, () => ({
-    x:Math.random()*w,
-    y:Math.random()*h,
-    speed:Math.random()*7+5,
-    length:Math.random()*18+10
-  }));
+const reducedMotion =
+  window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+function resizeCanvas() {
+
+  const dpr = Math.min(window.devicePixelRatio || 1, 2);
+
+  width = window.innerWidth;
+  height = window.innerHeight;
+
+  canvas.width = width * dpr;
+  canvas.height = height * dpr;
+
+  canvas.style.width = width + "px";
+  canvas.style.height = height + "px";
+
+  ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+
+  drops = Array.from(
+    { length: Math.min(350, Math.floor(width / 3)) },
+    () => ({
+      x: Math.random() * width,
+      y: Math.random() * height,
+      speed: Math.random() * 7 + 5,
+      length: Math.random() * 18 + 10,
+      opacity: Math.random() * .25 + .12
+    })
+  );
 }
 
-function animate() {
-  ctx.clearRect(0,0,w,h);
-  ctx.strokeStyle='rgba(190,215,235,0.28)';
-  ctx.lineWidth=1;
-  ctx.beginPath();
+function drawRain() {
 
-  for (const d of drops) {
-    ctx.moveTo(d.x,d.y);
-    ctx.lineTo(d.x-2,d.y+d.length);
-    d.y += d.speed;
-    d.x -= 1;
+  ctx.clearRect(0, 0, width, height);
 
-    if(d.y > h) {
-      d.y = -20;
-      d.x = Math.random()*w;
+  ctx.lineWidth = 1;
+
+  for (const drop of drops) {
+
+    ctx.strokeStyle =
+      `rgba(190, 215, 235, ${drop.opacity})`;
+
+    ctx.beginPath();
+    ctx.moveTo(drop.x, drop.y);
+    ctx.lineTo(drop.x - 2, drop.y + drop.length);
+    ctx.stroke();
+
+    if (!reducedMotion) {
+      drop.y += drop.speed;
+      drop.x -= 1.1;
     }
-    if(d.x < 0) d.x = w;
+
+    if (drop.y > height) {
+      drop.y = -drop.length;
+      drop.x = Math.random() * width;
+    }
+
+    if (drop.x < 0) {
+      drop.x = width;
+    }
   }
 
-  ctx.stroke();
-  requestAnimationFrame(animate);
+  if (!reducedMotion) {
+    requestAnimationFrame(drawRain);
+  }
 }
 
-window.addEventListener('resize',resize);
-resize();
-animate();
+window.addEventListener("resize", resizeCanvas);
+
+resizeCanvas();
+drawRain();
+
 </script>
 
 </body>
